@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1554891118}
-  chaseRange: 50
+  chaseRange: 5
 --- !u!195 &77833073
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3861,7 +3861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1554891118}
-  chaseRange: 20
+  chaseRange: 5
 --- !u!195 &459139745
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12910,7 +12910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1554891118}
-  chaseRange: 50
+  chaseRange: 5
 --- !u!195 &1315747216
 NavMeshAgent:
   m_ObjectHideFlags: 0
