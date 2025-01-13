@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public Slider slider;
     public void HealthCheck()
     {
-        if (playerHealth > 0)
+        if (playerHealth <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7649560881299553072}
+  - component: {fileID: 6080715717306333181}
+  - component: {fileID: 8642239399137580195}
   m_Layer: 0
   m_Name: Enemy4
   m_TagString: Untagged
@@ -32,6 +34,43 @@ Transform:
   - {fileID: 283174323559192882}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &6080715717306333181
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129129098656448845}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.41
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 3.33
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8642239399137580195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129129098656448845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff479abed8c9eb84b88509ec91b26627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  chaseRange: 5
+  animator: {fileID: 6128877204936590152}
 --- !u!1001 &316572425036545753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108,5 +147,10 @@ PrefabInstance:
 --- !u!4 &283174323559192882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e0f3366318e8ac547b52a3dae6c70b60, type: 3}
+  m_PrefabInstance: {fileID: 316572425036545753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6128877204936590152 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e0f3366318e8ac547b52a3dae6c70b60, type: 3}
   m_PrefabInstance: {fileID: 316572425036545753}
   m_PrefabAsset: {fileID: 0}

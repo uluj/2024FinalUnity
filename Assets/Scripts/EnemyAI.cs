@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] float chaseRange = 5f;
 
+    public Animator animator;
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
@@ -29,10 +30,26 @@ public class EnemyAI : MonoBehaviour
             {
                 isProvoked = false;
                 navMeshAgent.SetDestination(transform.position); // stop moving
+                if (animator.GetBool("IsTriggered"))
+                {
+                    animator.SetBool("IsTriggered", false);
+                }
+                if (animator.GetBool("ZombieTriggered"))
+                {
+                    animator.SetBool("ZombieTriggered", false);
+                }
             }
             else
             {
                 EngageTarget();
+                if (animator.GetBool("IsTriggered"))
+                {
+                    animator.SetBool("IsTriggered", true);
+                }
+                if (animator.GetBool("ZombieTriggered"))
+                {
+                    animator.SetBool("ZombieTriggered", true);
+                }
             }
         }
         else if (distanceToTarget <= chaseRange)

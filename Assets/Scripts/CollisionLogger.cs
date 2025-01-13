@@ -3,50 +3,76 @@ using UnityEngine;
 
 public class CollisionLogger : MonoBehaviour
 {
-    
+    public Animator animator;
     private PlayerHealth _playerHealth;
-    private bool _isColliding = false;
+    public int attackDamage = 50;     // Damage per attack
+    public float attackCooldown = 3.0f; // Time in seconds before the enemy can attack again
+
+    private bool canEnemyAttack = true; // Tracks whether the enemy can attack
 
     private void Start()
     {
-        // Start the coroutine to log collisions every 2 seconds
-        StartCoroutine(CollisionCheck());
+        // Find and set the player's health component
         GetPlayerHealth();
     }
 
     void GetPlayerHealth()
     {
-        _playerHealth = GameObject.Find("FirstPersonController").GetComponent<PlayerHealth>();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Detect when the player collides with an object
-        if (collision.gameObject.CompareTag("Player"))
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
         {
-            _isColliding = true;
+            _playerHealth = player.GetComponent<PlayerHealth>();
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        // Detect when the collision ends
-        if (collision.gameObject.CompareTag("Player"))
+        // Check if the player entered the trigger collider
+        if (other.CompareTag("Player"))
         {
-            _isColliding = false;
-        }
-    }
+            Debug.Log("Player entered attack range!");
 
-    private IEnumerator CollisionCheck()
-    {
-        while (true)
-        {
-            if (_isColliding)
+            // Attempt an attack if the enemy can attack
+            if (canEnemyAttack)
             {
-                Debug.Log("Player is colliding!");
-                _playerHealth.DecreaseHealth(50);
+                Attack();
             }
-            yield return new WaitForSeconds(2); // Wait for 2 seconds
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // Continuously attack when the player stays in the trigger and cooldown allows
+        if (other.CompareTag("Player") && canEnemyAttack)
+        {
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        animator?.SetBool("ZombieBite", true);
+        Debug.Log("Player is being attacked!");
+        _playerHealth.DecreaseHealth(attackDamage);
+        canEnemyAttack = false; // Disable attack
+        StartCoroutine(ResetAttackCooldown()); // Start cooldown timer
+    }
+
+    private IEnumerator ResetAttackCooldown()
+    {
+        Debug.Log("Attack cooldown started...");
+        yield return new WaitForSeconds(attackCooldown);
+        canEnemyAttack = true; // Re-enable attack
+        Debug.Log("Enemy can attack again.");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        animator?.SetBool("ZombieBite", false);
+        // Log when the player exits the trigger collider
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player left attack range.");
         }
     }
 }
