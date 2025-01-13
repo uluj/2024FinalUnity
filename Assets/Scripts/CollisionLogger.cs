@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CollisionLogger : MonoBehaviour
 {
-    public Animator animator;
+    
     private PlayerHealth _playerHealth;
     public int attackDamage = 50;     // Damage per attack
     public float attackCooldown = 3.0f; // Time in seconds before the enemy can attack again
@@ -51,7 +51,7 @@ public class CollisionLogger : MonoBehaviour
 
     private void Attack()
     {
-        animator?.SetBool("ZombieBite", true);
+        
         Debug.Log("Player is being attacked!");
         _playerHealth.DecreaseHealth(attackDamage);
         canEnemyAttack = false; // Disable attack
@@ -68,7 +68,7 @@ public class CollisionLogger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        animator?.SetBool("ZombieBite", false);
+        
         // Log when the player exits the trigger collider
         if (other.CompareTag("Player"))
         {

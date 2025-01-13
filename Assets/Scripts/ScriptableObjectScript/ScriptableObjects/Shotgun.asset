@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   range: 100
-  damageAmount: 10
+  damageAmount: 40
   automatic: 0
   fireRate: 1
   muzzleFlashPrefab: {fileID: 100006, guid: 7e9c50938e32351438a7df9ccad2f2a5, type: 3}
   hitEffectPrefab: {fileID: 100002, guid: 9bdf482976052a647946e8159033a295, type: 3}
-  muzzleFlash: {fileID: 0}
   sfx: {fileID: 8300000, guid: 0ba6907659dd5b340a12c25d89bdb78c, type: 3}

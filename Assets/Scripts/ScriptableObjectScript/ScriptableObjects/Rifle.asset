@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: 
   range: 100
-  damageAmount: 10
+  damageAmount: 50
   automatic: 0
   fireRate: 1
   muzzleFlashPrefab: {fileID: 100006, guid: c888f0c922d622147bbdbe2ca794142b, type: 3}
   hitEffectPrefab: {fileID: 100006, guid: 9e95c7b2183a4f345aaf86846f8f1918, type: 3}
-  muzzleFlash: {fileID: 0}
   sfx: {fileID: 8300000, guid: 1ccd1b95801349e4bbc4078085bc9e85, type: 3}

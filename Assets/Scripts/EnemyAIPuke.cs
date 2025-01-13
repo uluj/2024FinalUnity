@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAIPuke : MonoBehaviour
 {
-
+    
     [SerializeField] private Transform target;
     [SerializeField] float chaseRange = 5f;
 
-    public Animator animator;
+    public ParticleSystem puke;
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        puke.Pause();
     }
     // Update is called once per frame
     void Update()
@@ -30,26 +31,12 @@ public class EnemyAI : MonoBehaviour
             {
                 isProvoked = false;
                 navMeshAgent.SetDestination(transform.position); // stop moving
-                if (animator.GetBool("IsTriggered"))
-                {
-                    animator.SetBool("IsTriggered", false);
-                }
-                if (animator.GetBool("ZombieTriggered"))
-                {
-                    animator.SetBool("ZombieTriggered", false);
-                }
+                puke.Stop();
             }
             else
             {
                 EngageTarget();
-                if (animator.GetBool("IsTriggered"))
-                {
-                    animator.SetBool("IsTriggered", true);
-                }
-                if (animator.GetBool("ZombieTriggered"))
-                {
-                    animator.SetBool("ZombieTriggered", true);
-                }
+                puke.Play();
             }
         }
         else if (distanceToTarget <= chaseRange)
